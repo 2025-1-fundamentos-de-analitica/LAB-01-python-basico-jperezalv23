@@ -7,11 +7,14 @@ utilizar pandas, numpy o scipy.
 
 
 def pregunta_03():
-    """
-    Retorne la suma de la columna 2 por cada letra de la primera columna como
-    una lista de tuplas (letra, suma) ordendas alfabeticamente.
+    sumas = {}
 
-    Rta/
-    [('A', 53), ('B', 36), ('C', 27), ('D', 31), ('E', 67)]
+    with open("files/input/data.csv") as file:
+        for line in file:
+            partes = line.strip().split("\t")
+            letra = partes[0]
+            valor = int(partes[1])
+            sumas[letra] = sumas.get(letra, 0) + valor
 
-    """
+    return sorted(sumas.items())
+

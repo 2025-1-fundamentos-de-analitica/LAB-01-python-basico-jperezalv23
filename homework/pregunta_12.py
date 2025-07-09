@@ -1,11 +1,3 @@
-"""
-Escriba el codigo que ejecute la accion solicitada en cada pregunta. Los
-datos requeridos se encuentran en el archivo data.csv. En este laboratorio
-solo puede utilizar las funciones y librerias basicas de python. No puede
-utilizar pandas, numpy o scipy.
-"""
-
-
 def pregunta_12():
     """
     Genere un diccionario que contengan como clave la columna 1 y como valor
@@ -13,5 +5,16 @@ def pregunta_12():
 
     Rta/
     {'A': 177, 'B': 187, 'C': 114, 'D': 136, 'E': 324}
-
     """
+    resultado = {}
+    with open("files/input/data.csv") as f:
+        for linea in f:
+            partes = linea.strip().split('\t')
+            clave = partes[0]
+            valores_col5 = partes[4].split(',')
+            suma = sum(int(item.split(':')[1]) for item in valores_col5)
+            if clave in resultado:
+                resultado[clave] += suma
+            else:
+                resultado[clave] = suma
+    return resultado
